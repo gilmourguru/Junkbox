@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "896572056384",
+    "firebase_url": "https://junkhead-toolbox.firebaseio.com",
+    "project_id": "junkhead-toolbox",
+    "storage_bucket": "junkhead-toolbox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896572056384:android:a335736f0b7af9f0",
+        "android_client_info": {
+          "package_name": "com.junkheadaictribute.tools.junkbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896572056384-o3336u8nkb0n2t2gagos0qn7hju928k2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.junkheadaictribute.tools.junkbox",
+            "certificate_hash": "686106A271AE821D9E7064FE7CC5C057967647FA"
+          }
+        },
+        {
+          "client_id": "896572056384-g7grnhc0g32dco4dv0tmefe0bcie40o0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.junkheadaictribute.tools.junkbox",
+            "certificate_hash": "4C49D5E0A5C3AC9B09EF151E6EEF01966347073C"
+          }
+        },
+        {
+          "client_id": "896572056384-m98e9r6i5faspvflag1nssno55pf7i5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1k1DO4WMdunzlfatE06tCc0GqqtY3Bag"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896572056384-m98e9r6i5faspvflag1nssno55pf7i5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

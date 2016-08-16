@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.junkheadaictribute.tools.junkbox.Home">
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="99"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_more_vert_light_green_a700_24dp"
+        android:title="@string/action_settings" />
+
+    <item
+        android:id="@+id/app_info"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_info_light_green_a700_24dp"
+        android:title="@string/app_info"
+        app:showAsAction="always"/>
+
+
+
+
+
+</menu>

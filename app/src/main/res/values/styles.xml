@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.base">
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="AppTheme.base" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme.base">
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="HomeButtons" parent="AppTheme.base">
+        <item name="android:layout_margin">@dimen/activity_horizontal_margin</item>
+        <item name="android:elevation">12dp</item>
+    </style>
+
+</resources>

@@ -20,13 +20,16 @@ public class BpmLedTool extends AppCompatActivity {
 
     private Toolbar toolbar;
     private NumberPicker bpmPicker;
-    private TextView tv1, tv2, tv3, tv4;
+    private TextView tv1, tv2, tv3, tv4, tv5;
     private int min2sec = 60;
     private int milliSec = 1000;
     private int finalInterval = 500;
+    private double finalIntervalDouble;
     private int bpm;
     private String firebaseBpmValue = null;
     private String firebaseBpmResult = null;
+    private String Old = "Old BPM : ";
+    private String New = "New BPM : ";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBpmRef = mRootRef.child("BPM/curr_bpm");
@@ -45,6 +48,7 @@ public class BpmLedTool extends AppCompatActivity {
         tv2 = (TextView) findViewById(R.id.textView3);
         tv3 = (TextView) findViewById(R.id.textView4);
         tv4 = (TextView) findViewById(R.id.textView5);
+        tv5 = (TextView) findViewById(R.id.textView6);
 
 
         bpmPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -53,12 +57,11 @@ public class BpmLedTool extends AppCompatActivity {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 // TODO Auto-generated method stub
 
-                String Old = "Old BPM : ";
-                String New = "New BPM : ";
+
 
                 tv1.setText(Old.concat(String.valueOf(oldVal)));
                 firebaseBpmValue = (String.valueOf(newVal));
-                tv2.setText(firebaseBpmValue);
+                //tv2.setText(firebaseBpmValue);
                 mBpmRef.setValue(firebaseBpmValue);
             }
         });
@@ -92,18 +95,32 @@ public class BpmLedTool extends AppCompatActivity {
     }
 
     private void calcLedInt() {
-        finalInterval = (milliSec/(bpm/min2sec));
-        Toast.makeText(this, "LED Interval : " + finalInterval, Toast.LENGTH_LONG).show();
+        double milliDouble = (double) milliSec;
+        double bpmDouble = (double) bpm;
+        double min2secDouble = (double) min2sec;
+        finalIntervalDouble = (milliDouble/(bpmDouble/min2secDouble));
+        finalInterval = (int) finalIntervalDouble;
+        //Toast.makeText(this, "LED Interval : " + finalInterval, Toast.LENGTH_LONG).show();
         //Notification.Builder setLights (255, ((finalInterval%1)/2), ((finalInterval%1)/2));
+        testNotification();
 
     }
 
     private void testNotification() {
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setSmallIcon(R.mipmap.ic_launcher)
+        builder.setSmallIcon(R.drawable.ic_notify_main)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setOngoing(true);
-        builder.setLights(0xff0000ff, (finalInterval/2), (finalInterval/2));
+        int ledOn = finalInterval/4;
+        int ledOff = ledOn*3;
+        String lOn = "LED On : ";
+        String lOff = "LED Off : ";
+        String ms = "ms";
+        String on = lOn.concat(String.valueOf(ledOn)).concat(ms);
+        String off = lOff.concat(String.valueOf(ledOff)).concat(ms);
+        tv2.setText(on);
+        tv5.setText(off);
+        builder.setLights(0xff0000ff, ledOn, ledOff);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         manager.notify(1, builder.build());
     }

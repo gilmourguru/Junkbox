@@ -25,6 +25,8 @@ public class BpmLedTool extends AppCompatActivity {
     private int milliSec = 1000;
     private int finalInterval = 500;
     private int bpm;
+    private String firebaseBpmValue = null;
+    private String firebaseBpmResult = null;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBpmRef = mRootRef.child("BPM/curr_bpm");
@@ -44,6 +46,7 @@ public class BpmLedTool extends AppCompatActivity {
         tv3 = (TextView) findViewById(R.id.textView4);
         tv4 = (TextView) findViewById(R.id.textView5);
 
+
         bpmPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 
             @Override
@@ -54,8 +57,9 @@ public class BpmLedTool extends AppCompatActivity {
                 String New = "New BPM : ";
 
                 tv1.setText(Old.concat(String.valueOf(oldVal)));
-                tv2.setText(New.concat(String.valueOf(newVal)));
-                mBpmRef.setValue(newVal);
+                firebaseBpmValue = (String.valueOf(newVal));
+                tv2.setText(firebaseBpmValue);
+                mBpmRef.setValue(firebaseBpmValue);
             }
         });
     }
@@ -73,11 +77,10 @@ public class BpmLedTool extends AppCompatActivity {
         mBpmRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                 bpm = dataSnapshot.getValue(int.class);
-                String newBpm = Integer.valueOf(bpm);
-                tv4.setText(newBpm);
-                int calcBpm = Integer.valueOf(bpm);
-                calcLedInt(bpm);
+                 firebaseBpmResult = dataSnapshot.getValue(String.class);
+                tv4.setText(firebaseBpmResult);
+                bpm = Integer.parseInt(firebaseBpmResult);
+                calcLedInt();
             }
 
             @Override

@@ -1,6 +1,7 @@
 package com.junkheadaictribute.tools.junkbox;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +26,12 @@ public class Home extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.app_bar_home);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
         //flacAppBtn = (Button) findViewById(R.id.flac_app_btn);
+
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_home);
+
+        drawerFragment.setUp(R.id.nav_drawer_home,(DrawerLayout)findViewById(R.id.nav_drawer_home), toolbar);
 
     }
 

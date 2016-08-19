@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +52,10 @@ public class BpmLedTool extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_bpm);
+
+        drawerFragment.setUp(R.id.nav_drawer_bpm, (DrawerLayout)findViewById(R.id.nav_drawer_bpm), toolbar);
+
         bpmPicker = (NumberPicker) findViewById(R.id.BpmPicker);
         bpmPicker.setMinValue(48);
         bpmPicker.setMaxValue(320);
@@ -84,7 +89,7 @@ public class BpmLedTool extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
@@ -99,11 +104,8 @@ public class BpmLedTool extends AppCompatActivity {
 
         if (id == android.R.id.home) {
             Intent upIntent = NavUtils.getParentActivityIntent(this);
-            if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities();
-            }else {
-                NavUtils.navigateUpTo(this, upIntent);
-            }
+            NavUtils.navigateUpTo(this, upIntent);
+
             return true;
         }
     return super.onOptionsItemSelected(item);
@@ -171,4 +173,6 @@ public class BpmLedTool extends AppCompatActivity {
     public void openSubdivisionTool(View view) {
 
     }
+
+
 }

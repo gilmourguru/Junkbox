@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,9 @@ public class BpmLedTool extends AppCompatActivity {
         setContentView(R.layout.activity_bpm_led_tool);
         toolbar = (Toolbar) findViewById(R.id.app_bar_bpm);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         bpmPicker = (NumberPicker) findViewById(R.id.BpmPicker);
         bpmPicker.setMinValue(48);
@@ -107,10 +111,6 @@ public class BpmLedTool extends AppCompatActivity {
     }
 
     private void testNotification() {
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setSmallIcon(R.drawable.ic_notify_main)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setOngoing(true);
         int ledOn = finalInterval/4;
         int ledOff = ledOn*3;
         String lOn = "LED On : ";
@@ -120,8 +120,21 @@ public class BpmLedTool extends AppCompatActivity {
         String off = lOff.concat(String.valueOf(ledOff)).concat(ms);
         tv2.setText(on);
         tv5.setText(off);
-        builder.setLights(0xff0000ff, ledOn, ledOff);
+
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setSmallIcon(R.drawable.ic_notify_main)
+                .setContentTitle(bpm + "bpm")
+                .setContentText(on + " | " + off + " | " + "1/8.= " + ledOff + ms)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setVisibility(3)
+                .setAutoCancel(true);
+
+        builder.setLights(0xff00ff00, ledOn, ledOff);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         manager.notify(1, builder.build());
+    }
+
+    public void openSubdivisionTool(View view) {
+
     }
 }

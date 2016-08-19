@@ -37,6 +37,8 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_audio_record_test3);
         toolbar = (Toolbar) findViewById(R.id.app_bar_audiotest3);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recordBtn = (ImageView) findViewById(R.id.recordBtn);
         recordBtn.setOnClickListener(this);
         stopRecordBtn = (ImageView) findViewById(R.id.stopRecordBtn);

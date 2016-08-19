@@ -5,6 +5,6 @@
     android:background="@color/colorPrimary"
     android:navigationIcon="@drawable/ic_menu_light_green_a700_48dp"
     android:titleTextColor="@color/colorSecondaryText"
-    android:theme="myCustomAppBarTheme">
+    style="myCustomAppBarTheme">
 
 </android.support.v7.widget.Toolbar>

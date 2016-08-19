@@ -1,11 +1,17 @@
 package com.junkheadaictribute.tools.junkbox;
 
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.NavUtils;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -78,6 +84,32 @@ public class BpmLedTool extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            Toast.makeText(this, "Settings not yet developed.", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if (id == R.id.app_info) {
+            Toast.makeText(this, "App Version : 1.0.3", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if (id == android.R.id.home) {
+            Intent upIntent = NavUtils.getParentActivityIntent(this);
+            if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+                TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities();
+            }else {
+                NavUtils.navigateUpTo(this, upIntent);
+            }
+            return true;
+        }
+    return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -97,6 +129,8 @@ public class BpmLedTool extends AppCompatActivity {
         });
 
     }
+
+
 
     private void calcLedInt() {
         double milliDouble = (double) milliSec;

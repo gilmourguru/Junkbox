@@ -4,10 +4,12 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 public class BpmLedTool extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private ActionBar ab;
     private NumberPicker bpmPicker;
     private TextView tv1, tv2, tv3, tv4, tv5;
     private int min2sec = 60;
@@ -48,13 +52,13 @@ public class BpmLedTool extends AppCompatActivity {
         setContentView(R.layout.activity_bpm_led_tool);
         toolbar = (Toolbar) findViewById(R.id.app_bar_bpm);
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ab = getSupportActionBar();
+        //getSupportActionBar().setHomeButtonEnabled(true);
+        ab.setDisplayHomeAsUpEnabled(true);
 
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_bpm);
 
-        drawerFragment.setUp(R.id.nav_drawer_bpm, (DrawerLayout)findViewById(R.id.nav_drawer_bpm), toolbar);
+        //drawerFragment.setUp(R.id.nav_drawer_bpm, (DrawerLayout)findViewById(R.id.nav_drawer_bpm), toolbar);
 
         bpmPicker = (NumberPicker) findViewById(R.id.BpmPicker);
         bpmPicker.setMinValue(48);
@@ -90,25 +94,30 @@ public class BpmLedTool extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "Settings not yet developed.", Toast.LENGTH_SHORT).show();
-            return true;
+        switch (item.getItemId()) {
+
+            case R.id.action_settings:
+                Snackbar mSnackbar = Snackbar.make(findViewById(R.id.snackbar_msg), R.string.settings_msg,
+                        Snackbar.LENGTH_LONG);
+                mSnackbar.show();
+                return true;
+
+
+            case R.id.app_info:
+                mSnackbar = Snackbar.make(findViewById(R.id.snackbar_msg), R.string.app_info_msg,
+                        Snackbar.LENGTH_LONG);
+                mSnackbar.show();
+                return true;
+
+
+            default:
+                //Intent upIntent = NavUtils.getParentActivityIntent(this);
+               // NavUtils.navigateUpTo(this, upIntent);
+
+                return super.onOptionsItemSelected(item);
         }
 
-        if (id == R.id.app_info) {
-            Toast.makeText(this, "App Version : 1.0.3", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        if (id == android.R.id.home) {
-            Intent upIntent = NavUtils.getParentActivityIntent(this);
-            NavUtils.navigateUpTo(this, upIntent);
-
-            return true;
-        }
-    return super.onOptionsItemSelected(item);
     }
 
     @Override

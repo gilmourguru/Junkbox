@@ -7,10 +7,39 @@
     tools:context="com.junkheadaictribute.tools.junkbox.NavigationDrawerFragment">
 
     <!-- TODO: Update blank fragment layout -->
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="@color/colorTextPrimary"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/current_setlist" />
+
+
+        <Button
+            style="@style/SetlistButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Them Bones 160bpm"/>
+        <Button
+            style="@style/SetlistButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dam That River 132 bpm"/>
+       <Button
+           style="@style/SetlistButtons"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Rain When I Die 128 bpm"/>
+
+
+   </LinearLayout>
 
 </RelativeLayout>

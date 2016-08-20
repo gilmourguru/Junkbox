@@ -29,9 +29,9 @@ public class Home extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         //flacAppBtn = (Button) findViewById(R.id.flac_app_btn);
 
-        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_home);
+        //NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_home);
 
-        drawerFragment.setUp(R.id.nav_drawer_home,(DrawerLayout)findViewById(R.id.nav_drawer_home), toolbar);
+        //drawerFragment.setUp(R.id.nav_drawer_home,(DrawerLayout)findViewById(R.id.nav_drawer_home), toolbar);
 
     }
 

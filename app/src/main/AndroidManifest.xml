@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_junkhead_logo"
@@ -34,14 +33,20 @@
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme" />
         <activity android:name=".AudioRecordTest" />
-        <activity android:name=".AudioRecordTest3"
+        <activity
+            android:name=".AudioRecordTest3"
             android:label="Audio Recorder"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".Home"/>
-        <activity android:name=".BpmLedTool"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".BpmLedTool"
             android:label="BPM LED Tool"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".Home" />
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".NavHome"
+            android:label="@string/title_activity_nav_home"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

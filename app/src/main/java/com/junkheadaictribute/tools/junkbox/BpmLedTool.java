@@ -54,11 +54,11 @@ public class BpmLedTool extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ab = getSupportActionBar();
         //getSupportActionBar().setHomeButtonEnabled(true);
-        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeButtonEnabled(true);
 
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_bpm);
 
-        //drawerFragment.setUp(R.id.nav_drawer_bpm, (DrawerLayout)findViewById(R.id.nav_drawer_bpm), toolbar);
+        drawerFragment.setUp(R.id.nav_fragment_bpm, (DrawerLayout)findViewById(R.id.nav_drawer_bpm), toolbar);
 
         bpmPicker = (NumberPicker) findViewById(R.id.BpmPicker);
         bpmPicker.setMinValue(48);
@@ -113,7 +113,7 @@ public class BpmLedTool extends AppCompatActivity {
 
             default:
                 //Intent upIntent = NavUtils.getParentActivityIntent(this);
-               // NavUtils.navigateUpTo(this, upIntent);
+                //NavUtils.navigateUpTo(this, upIntent);
 
                 return super.onOptionsItemSelected(item);
         }

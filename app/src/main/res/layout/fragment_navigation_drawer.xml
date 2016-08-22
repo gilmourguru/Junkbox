@@ -1,4 +1,4 @@
-<android.support.v7.widget.RecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,39 +10,51 @@
     android:scrollbars="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:gravity="center_horizontal"
         android:textAllCaps="true"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/current_setlist" />
+        android:text="@string/current_setlist"
+        android:id="@+id/setlist_title"/>
+
+    <View
+        android:id="@+id/div1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        android:layout_below="@id/setlist_title"/>
 
 
         <Button
             style="@style/SetlistButtons"
+            android:id="@+id/themBonesCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Them Bones 160bpm"/>
+            android:layout_below="@id/div1"
+            android:text="Them Bones 160bpm"
+            />
         <Button
             style="@style/SetlistButtons"
+            android:id="@+id/damThatRiverCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dam That River 132 bpm"/>
+            android:text="Dam That River 132 bpm"
+            android:layout_below="@id/themBonesCard"/>
        <Button
            style="@style/SetlistButtons"
+           android:id="@+id/rainWhenIDieCard"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Rain When I Die 128 bpm"/>
+           android:text="Rain When I Die 128 bpm"
+           android:layout_below="@id/damThatRiverCard"/>
 
 
-   </LinearLayout>
 
-</android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -22,16 +22,16 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_appbar);
 
         toolbar = (Toolbar) findViewById(R.id.app_bar_home);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         //flacAppBtn = (Button) findViewById(R.id.flac_app_btn);
 
-        //NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_home);
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_home);
 
-        //drawerFragment.setUp(R.id.nav_drawer_home,(DrawerLayout)findViewById(R.id.nav_drawer_home), toolbar);
+        drawerFragment.setUp(R.id.nav_fragment_home,(DrawerLayout)findViewById(R.id.nav_drawer_home), toolbar);
 
     }
 

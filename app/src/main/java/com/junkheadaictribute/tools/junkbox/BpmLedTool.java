@@ -4,12 +4,16 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class BpmLedTool extends AppCompatActivity {
+public class BpmLedTool extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private ActionBar ab;
@@ -50,15 +55,27 @@ public class BpmLedTool extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bpm_led_tool);
-        toolbar = (Toolbar) findViewById(R.id.app_bar_bpm);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_bpm_led_tool);
         setSupportActionBar(toolbar);
-        ab = getSupportActionBar();
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        ab.setHomeButtonEnabled(true);
 
-        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.nav_fragment_bpm);
 
-        drawerFragment.setUp(R.id.nav_fragment_bpm, (DrawerLayout)findViewById(R.id.nav_drawer_bpm), toolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "You hit info", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_bpm);
+        navigationView.setNavigationItemSelectedListener(this);
 
         bpmPicker = (NumberPicker) findViewById(R.id.BpmPicker);
         bpmPicker.setMinValue(48);
@@ -98,26 +115,68 @@ public class BpmLedTool extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_settings:
-                Snackbar mSnackbar = Snackbar.make(findViewById(R.id.snackbar_msg), R.string.settings_msg,
+                Snackbar mSnackbar = Snackbar.make(findViewById(R.id.snackbar_bpm_led_tool), R.string.settings_msg,
                         Snackbar.LENGTH_LONG);
                 mSnackbar.show();
                 return true;
 
 
             case R.id.app_info:
-                mSnackbar = Snackbar.make(findViewById(R.id.snackbar_msg), R.string.app_info_msg,
+                mSnackbar = Snackbar.make(findViewById(R.id.snackbar_bpm_led_tool), R.string.app_info_msg,
                         Snackbar.LENGTH_LONG);
                 mSnackbar.show();
                 return true;
 
-
-            default:
-                //Intent upIntent = NavUtils.getParentActivityIntent(this);
-                //NavUtils.navigateUpTo(this, upIntent);
-
-                return super.onOptionsItemSelected(item);
         }
 
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_setlistTool) {
+            Intent mIntent = new Intent(this, SetlistManager.class);
+            drawer.closeDrawer(GravityCompat.START);
+            startActivity(mIntent);
+            return true;
+        } else if (id == R.id.nav_audioRecord3) {
+            Intent mIntent = new Intent(this, AudioRecordTest3.class);
+            drawer.closeDrawer(GravityCompat.START);
+            startActivity(mIntent);
+            return true;
+
+        } else if (id == R.id.nav_bpmTool) {
+            drawer.closeDrawer(GravityCompat.START);
+            Snackbar.make(findViewById(R.id.snackbar_bpm_led_tool),"Already viewing BPM LED Tool, Dumbass!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+
+        } else if (id == R.id.nav_lyrics) {
+            drawer.closeDrawer(GravityCompat.START);
+            Snackbar.make(findViewById(R.id.snackbar_bpm_led_tool),"Lyrics Activity not yet developed!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        } else if (id == R.id.nav_share) {
+            drawer.closeDrawer(GravityCompat.START);
+            Snackbar.make(findViewById(R.id.snackbar_bpm_led_tool),"Share what you doper?", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        } else if (id == R.id.nav_send) {
+            drawer.closeDrawer(GravityCompat.START);
+            Snackbar.make(findViewById(R.id.snackbar_bpm_led_tool),"Nothing to send", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        }
+
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -139,6 +198,16 @@ public class BpmLedTool extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
 

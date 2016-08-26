@@ -1,11 +1,19 @@
 package com.junkheadaictribute.tools.junkbox;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -35,10 +43,73 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_record_test3);
-        toolbar = (Toolbar) findViewById(R.id.app_bar_audiotest3);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_audio_record_test3);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_audio_record_test3);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Why'd you hit that?", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_audio_record_test3);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem item) {
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        // Handle navigation view item clicks here.
+                        int id = item.getItemId();
+
+                        if (id == R.id.nav_setlistTool) {
+                            Intent mIntent = new Intent(this, SetlistManager.class);
+                            drawer.closeDrawer(GravityCompat.START);
+                            startActivity(mIntent);
+                            return true;
+                        } else if (id == R.id.nav_audioRecord3) {
+                            drawer.closeDrawer(GravityCompat.START);
+                            Snackbar.make(findViewById(R.id.snackbar_audio_record_test3),"Already viewing Audio Recorder, Dumbass!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        } else if (id == R.id.nav_bpmTool) {
+                            Intent mIntent = new Intent(, AudioRecordTest3.class);
+                            drawer.closeDrawer(GravityCompat.START);
+                            startActivity(mIntent);
+                            return true;
+
+                        } else if (id == R.id.nav_lyrics) {
+                            drawer.closeDrawer(GravityCompat.START);
+                            Snackbar.make(findViewById(R.id.snackbar_audio_record_test3),"Lyrics Activity not yet developed!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        } else if (id == R.id.nav_share) {
+                            drawer.closeDrawer(GravityCompat.START);
+                            Snackbar.make(findViewById(R.id.snackbar_audio_record_test3),"Share what you doper?", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        } else if (id == R.id.nav_send) {
+                            drawer.closeDrawer(GravityCompat.START);
+                            Snackbar.make(findViewById(R.id.snackbar_audio_record_test3),"Nothing to send", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        }
+
+
+                        drawer.closeDrawer(GravityCompat.START);
+                        return true;
+                    }
+                }
+        );
+
         recordBtn = (ImageView) findViewById(R.id.recordBtn);
         recordBtn.setOnClickListener(this);
         stopRecordBtn = (ImageView) findViewById(R.id.stopRecordBtn);
@@ -63,6 +134,9 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
 
 
     }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+
 
     public void onClick(View v) {
         // do something when the button is clicked

@@ -59,11 +59,11 @@ public class BpmLedTool extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_bpm);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "You hit info", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Why'd you hit that?", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

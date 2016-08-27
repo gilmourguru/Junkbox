@@ -38,6 +38,7 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
     private MediaPlayer myPlayer;
     private boolean RECORDING_UNCOMPRESSED = true;
     private int i = 0;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -66,14 +67,12 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem item) {
-                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                         // Handle navigation view item clicks here.
                         int id = item.getItemId();
 
                         if (id == R.id.nav_setlistTool) {
-                            Intent mIntent = new Intent(this, SetlistManager.class);
-                            drawer.closeDrawer(GravityCompat.START);
-                            startActivity(mIntent);
+                            openSetListManager();
                             return true;
                         } else if (id == R.id.nav_audioRecord3) {
                             drawer.closeDrawer(GravityCompat.START);
@@ -81,9 +80,8 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
                                     .setAction("Action", null).show();
 
                         } else if (id == R.id.nav_bpmTool) {
-                            Intent mIntent = new Intent(, AudioRecordTest3.class);
-                            drawer.closeDrawer(GravityCompat.START);
-                            startActivity(mIntent);
+
+                            openBpmLedTool();
                             return true;
 
                         } else if (id == R.id.nav_lyrics) {
@@ -133,6 +131,12 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
 
 
 
+    }
+
+    private void openSetListManager() {
+        Intent mIntent = new Intent(this, SetlistManager.class);
+        drawer.closeDrawer(GravityCompat.START);
+        startActivity(mIntent);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -251,6 +255,11 @@ public class AudioRecordTest3 extends AppCompatActivity implements View.OnClickL
         stopRecordBtn.setEnabled(false);
         playBtn.setEnabled(false);
         stopPlaybackBtn.setEnabled(false);
+    }
+    public void openBpmLedTool() {
+        Intent mIntent = new Intent(this, BpmLedTool.class);
+        drawer.closeDrawer(GravityCompat.START);
+        startActivity(mIntent);
     }
 
 

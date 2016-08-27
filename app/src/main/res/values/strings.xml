@@ -41,4 +41,6 @@
         completions."
     </string>
     <string name="bpm_activity_title">BPM LED Tool</string>
+    <string name="change_album_theme">Change Album Theme</string>
+    <string name="album_photo_changed">Album Photo Changed</string>
 </resources>

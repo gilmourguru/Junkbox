@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_setlistTool"
+            android:icon="@drawable/ic_notify_main"
+            android:title="Setlist Manager" />
+        <item
+            android:id="@+id/nav_audioRecord3"
+            android:icon="@mipmap/ic_audio_rec_3"
+            android:title="Audio Recorder" />
+        <item
+            android:id="@+id/nav_bpmTool"
+            android:icon="@mipmap/ic_led"
+            android:title="BPM Tool" />
+        <item
+            android:id="@+id/nav_lyrics"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Lyrics" />
+    </group>
+
+    <item android:title="Extras">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

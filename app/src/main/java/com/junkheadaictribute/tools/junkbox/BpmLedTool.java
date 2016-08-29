@@ -79,7 +79,7 @@ public class BpmLedTool extends AppCompatActivity
 
         bpmPicker = (NumberPicker) findViewById(R.id.BpmPicker);
         bpmPicker.setMinValue(48);
-        bpmPicker.setMaxValue(320);
+        bpmPicker.setMaxValue(240);
         tv1 = (TextView) findViewById(R.id.textView2);
         tv2 = (TextView) findViewById(R.id.textView3);
         tv3 = (TextView) findViewById(R.id.textView4);

@@ -43,4 +43,8 @@
     <string name="bpm_activity_title">BPM LED Tool</string>
     <string name="change_album_theme">Change Album Theme</string>
     <string name="album_photo_changed">Album Photo Changed</string>
+    <string name="them_bones">Them Bones</string>
+    <string name="_2_32">2:32</string>
+    <string name="them_bones_tempo">166 bpm</string>
+    <string name="album_dirt">Dirt</string>
 </resources>

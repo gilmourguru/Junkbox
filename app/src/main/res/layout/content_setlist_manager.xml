@@ -10,13 +10,12 @@
 
     tools:showIn="@layout/app_bar_setlist_manager">
 
-    <Button
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_setlist_manager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/HomeButtons"
-        android:background="@android:color/white"
-        android:textColor="@color/colorTextPrimary"
-        android:text="Them Bones - 2:32 - 166 bpm"/>
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 
